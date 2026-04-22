@@ -4,38 +4,29 @@ import java.util.Scanner;
 
 public class DaysInMonth {
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+    public boolean laNamNhuan(int nam) {
+        return (nam % 4 == 0 && nam % 100 != 0) || (nam % 400 == 0);
+    }
 
-        // 1. Nhap thang va nam
-        System.out.print("Nhap thang: ");
-        int thang = sc.nextInt();
-
-        System.out.print("Nhap nam: ");
-        int nam = sc.nextInt();
-
+    // Phuong thuc tinh so ngay
+    public String tinhSoNgay(int thang, int nam) {
         int soNgay = 0;
-
         switch (thang) {
             case 1, 3, 5, 7, 8, 10, 12 ->
                 soNgay = 31;
             case 4, 6, 9, 11 ->
                 soNgay = 30;
             case 2 -> {
-                if ((nam % 4 == 0 && nam % 100 != 0) || (nam % 400 == 0)) {
+                if (laNamNhuan(nam)) {
                     soNgay = 29;
                 } else {
                     soNgay = 28;
                 }
             }
             default -> {
-                System.out.println("Thang khong hop le!");
-                return;
+                return "Thang khong hop le!";
             }
         }
-
-        System.out.println("In ra: " + soNgay + " ngay");
-
-        sc.close();
+        return soNgay + " ngay";
     }
 }
